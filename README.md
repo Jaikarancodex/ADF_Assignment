@@ -579,7 +579,7 @@ Silver Layer (Cleaned Delta Tables)
 
 ---
 
-## 5️ Final Answer (2 Lines) ⭐
+## Final Answer (2 Lines) ⭐
 
 > Data profiling is the process of analyzing source data to understand its structure, quality, and patterns before transformation.
 > In this project, profiling was performed on column formats, data types, patterns, and business thresholds, enabling a metadata-driven ADF ingestion and Databricks-based Bronze-to-Silver architecture.
