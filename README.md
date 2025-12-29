@@ -144,11 +144,15 @@ lastModified > v_latestTime
 
 <img width="1918" height="537" alt="image" src="https://github.com/user-attachments/assets/e64aa220-9285-41e9-8986-9a4d35e65574" />
 
+---
+
 # 💥 Question 4
 
 * Database name: sales_view 
 
 <img width="1918" height="400" alt="image" src="https://github.com/user-attachments/assets/e37e48a0-db2e-41a4-871f-fdaa613fc27a" />
+
+---
 
 # 💥 Question 5 (Customer file) 
 
@@ -197,7 +201,7 @@ Create a column expenditure-status, based on spent column is spent below 200 col
 ### 📌 Substep 2 (Cast in double)
 <img width="1918" height="532" alt="image" src="https://github.com/user-attachments/assets/e1009be8-10f5-4367-9b55-003cda51754c" />
 
-## 📌 Final answer
+## ✅ Final Step
 <img width="1918" height="937" alt="image" src="https://github.com/user-attachments/assets/43e0dd23-55c5-4117-b74c-52a232bd68cf" />
 
 ## ✔  Step 9
@@ -210,6 +214,385 @@ Create a column expenditure-status, based on spent column is spent below 200 col
 ### 📌 Create an container for silver and save path to store
 <img width="1918" height="371" alt="image" src="https://github.com/user-attachments/assets/15c1c273-337e-4998-a6e0-8727887c7048" />
 
-### 📌 Final Result
+### ✅ Final Result
 <img width="1918" height="788" alt="image" src="https://github.com/user-attachments/assets/2c113a2c-34d9-4936-b05a-152f33e60efc" />
+
+---
+
+# 💥 Question 6 (Product File) 
+
+###  Create DataFrame with Load Path
+<img width="1918" height="870" alt="image" src="https://github.com/user-attachments/assets/3ff2e4f1-5340-4bdf-85f9-a5b6f238c13a" />
+
+## ✔  Step 1
+All the column header shlould be in snake case in lower case (use same UDF Function) 
+<img width="1918" height="898" alt="image" src="https://github.com/user-attachments/assets/884d8e50-2d51-4f6c-a6d9-864e53ae9194" />
+
+## ✔  Step 2
+Create a column sub_category (Use Category columns id category_id=1, "phone"; 2, "laptop"; 3,"playstation"; 4,"e-device" 
+<img width="1918" height="942" alt="image" src="https://github.com/user-attachments/assets/d7bb9225-e255-4803-bb18-a9799941405c" />
+
+## ✔  Step 3
+Write based on upsert [table_name: product](in silver layer path is silver/sales_view/tablename/{delta pearquet} 
+<img width="1918" height="841" alt="image" src="https://github.com/user-attachments/assets/e5bc056a-8fdf-4d87-af77-f82ba5d685e3" />
+
+---
+
+# 💥 Question 6 (Store File) 
+
+###  Create DataFrame with Load Path
+<img width="1918" height="842" alt="image" src="https://github.com/user-attachments/assets/296ab58c-2cda-4444-9923-def1bddc6a32" />
+
+##  ✔  Step 1
+Read the data make sure header shlould be in snake case in lower case (use same UDF Function) 
+<img width="1917" height="821" alt="image" src="https://github.com/user-attachments/assets/689bdeea-a41b-439f-9c76-321ed139b54b" />
+
+##  ✔  Step 2
+Create a store category columns and the value is exatracted from email Eg: "electromart" from johndoe@electromart.com 
+<img width="1918" height="787" alt="image" src="https://github.com/user-attachments/assets/151e5987-50f9-46dd-a815-0da32b448c32" />
+
+##  ✔  Step 3
+created_at, updated_at date as yyyy-MM-dd format 
+
+### 📌 Substep 1
+<img width="1917" height="423" alt="image" src="https://github.com/user-attachments/assets/65b30875-b2c7-4fe2-ad74-96dabfb892dc" />
+
+### 📌 Substep 2
+<img width="1918" height="597" alt="image" src="https://github.com/user-attachments/assets/55b7766f-546e-4432-81c8-ddc9df391af0" />
+
+<img width="1918" height="643" alt="image" src="https://github.com/user-attachments/assets/e56f3ff6-3bfe-45be-8b94-593a913470ea" />
+
+##  ✔  Step 4
+Write based on upsert [table_name: store] (in silver layer path is silver/sales_view/tablename/{delta pearquet} 
+<img width="1918" height="922" alt="image" src="https://github.com/user-attachments/assets/ffa366b0-ba42-4a23-92e7-5523b592cabf" />
+
+---
+
+# 💥 Question 7 (Sales File) 
+
+###  Create DataFrame with Load Path
+<img width="1917" height="842" alt="image" src="https://github.com/user-attachments/assets/afd7055a-3e70-4e5c-983f-83d7574ccae4" />
+
+##  ✔  Step 1
+Read the data make sure header shlould be in snake case in lower case (use same UDF Function) 
+<img width="1918" height="687" alt="image" src="https://github.com/user-attachments/assets/55a90aa7-f7ce-457a-abdc-2e253d8fc042" />
+
+##  ✔  Step 2
+Write based on upsert [table_name: customer_sales] (in silver layer path is silver/sales_view/tablename/{delta pearquet} 
+<img width="1917" height="798" alt="image" src="https://github.com/user-attachments/assets/c2aa1b2d-4194-475a-98b2-d3d82db6fe90" />
+
+---
+
+# 💥 Question 7 (gold layer) 
+
+###  Config Ssetup and Create DataFrame with Load Path 
+<img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/45f9a700-0d2e-4d2b-aa43-b1c08eca1abe" />
+
+
+##  ✔  Step 1
+### using product and store table get the below data 
+store_id,store_name,location,manager_name,product_name,product_code,description,category_id,price,stock_quantity,supplier_id,product_created_at,product_updated_at,image_url,weight,expiry_date,is_active,tax_rate. 
+
+
+### 📌 Substep 1
+Check Schema
+<img width="1918" height="463" alt="image" src="https://github.com/user-attachments/assets/77403d6e-cb99-4b49-a1c9-745928cdb8ac" />
+
+### 📌 Substep 2
+#### Due to No Id Match Can't perfrom **inner join**
+<img width="1918" height="721" alt="image" src="https://github.com/user-attachments/assets/a00d3b24-122c-4406-a736-3bd4d19b1d7c" />
+
+### 📌 Substep 3
+#### Left Join
+<img width="1917" height="743" alt="image" src="https://github.com/user-attachments/assets/13602016-f24c-45c1-9a7e-58c5f6419d4b" />
+
+### ✅  Final Step
+<img width="1918" height="893" alt="image" src="https://github.com/user-attachments/assets/6cd2abb5-b0e3-4f7e-916f-0e551a75dd1c" />
+
+##  ✔  Step 2
+Write based on overwrite (table_name : StoreProductSalesAnalysis )(in gold layer path is gold/sales_view/tablename/{delta pearquet} 
+<img width="1918" height="410" alt="image" src="https://github.com/user-attachments/assets/d9d78f83-a173-4a11-a2e7-a133fe781e4c" />
+
+##  ✔  Step 3
+Read the delta table (using UDF functions) 
+<img width="1913" height="887" alt="image" src="https://github.com/user-attachments/assets/da61f97b-3099-4e50-a92e-a151004e3617" />
+
+---
+
+# 🎯 So, at the end below are things you need to have. 
+## ✔ In ADLS  
+###  Paths: Are mentioned above 
+## 📂 Bronze Layer (4 folder and raw files inside) Copied from ADF 
+
+* 1)customer 
+* 2)product 
+* 3)store 
+* 4)sales 
+
+<img width="1918" height="555" alt="image" src="https://github.com/user-attachments/assets/c5707d0c-666f-41f6-87c8-52eb106ea685" />
+
+---
+
+## 📂 Silver Layer (4 folders with table name inside silver) 
+
+* 1)customer 
+* 2)product 
+* 3)store 
+* 4)customer_sales
+
+<img width="1918" height="578" alt="image" src="https://github.com/user-attachments/assets/0bd955a0-9feb-4363-802d-be4949de5748" />
+
+### Example delta file inside Customer
+<img width="1918" height="462" alt="image" src="https://github.com/user-attachments/assets/60bd21b7-6e3c-41b4-a6cb-f59d6b4b03ad" />
+
+---
+
+## 📂  Gold Layer (1 folder with table name inside gold) 
+
+* 1)StoreProductSalesAnalysis	 
+<img width="1917" height="427" alt="image" src="https://github.com/user-attachments/assets/2af00a15-37c6-4b54-9684-199e17263517" />
+
+---
+
+## 🚀 In databricks 
+
+* bronze_to_silver - creating of silver tables 
+* silver_to_gold - creating of gold tables 
+
+<img width="1918" height="667" alt="image" src="https://github.com/user-attachments/assets/79aff22a-15ac-40d5-9458-740ced2c00d8" />
+
+---
+
+## 💥 Question1 - What is Data Profiling? 
+
+**Data Profiling** is the process of **examining, understanding, and validating data** to assess its **quality, structure, patterns, and anomalies** before using it for analytics or downstream processing.
+
+### Why it is done
+
+* Identify **data quality issues**
+* Understand **data distributions & patterns**
+* Validate **business rules**
+* Decide **transformation & cleansing logic**
+* Reduce **pipeline failures in production**
+
+📌 *In short:*
+ Data profiling tells **what data you really have**, not what you assume.
+
+---
+
+## 💥 Question2 - How Data Profiling Is Done (General Steps) 
+
+Typical profiling activities include:
+
+1. **Schema Profiling**
+
+   * Column names
+   * Data types
+   * Nullable vs non-nullable fields
+
+2. **Content Profiling**
+
+   * Min / Max values
+   * Distinct values
+   * Null counts
+
+3. **Pattern & Format Profiling**
+
+   * Date formats
+   * Email patterns
+   * String casing
+
+4. **Relationship Profiling**
+
+   * Derived columns
+   * Split / extract logic
+   * Business-rule based columns
+
+5. **Quality Rule Validation**
+
+   * Threshold checks
+   * Standardization rules
+   * Conditional logic
+
+---
+
+## 💥 Question3 - Now write a usecase based on your understanding what is the architecture followed, completed understanding from end to end. 
+
+Below are the **exact profiling steps That I performed**, mapped directly to my implementation:
+
+### 🔹 Step 1: Column Name Profiling
+
+* Observed **mixed / camel case headers**
+* Identified inconsistency across files
+* Applied **dynamic camelCase → snake_case**
+
+📌 *Profiling Outcome:* Column standardization required
+
+---
+
+### 🔹 Step 2: Name Column Profiling
+
+* Detected full name stored in single column
+* Identified space `" "` as delimiter
+* Split into `first_name` and `last_name`
+
+📌 *Profiling Outcome:* Attribute normalization needed
+
+---
+
+### 🔹 Step 3: Email Pattern Profiling
+
+* Analyzed email format: `name@domain.com`
+* Extracted **domain** as a new analytical column
+
+📌 *Profiling Outcome:* Valuable derived attribute available
+
+---
+
+### 🔹 Step 4: Gender Value Profiling
+
+* Identified textual values: `male`, `female`
+* Standardized into categorical values: `M`, `F`
+
+📌 *Profiling Outcome:* Data normalization & storage optimization
+
+---
+
+### 🔹 Step 5: Date-Time Profiling
+
+* Found combined date & time in single column
+* Split into:
+
+  * `date`
+  * `time`
+* Reformatted date to `yyyy-MM-dd`
+
+📌 *Profiling Outcome:* Analytical & partition-friendly format
+
+---
+
+### 🔹 Step 6: Numerical Range Profiling
+
+* Analyzed `spent` column distribution
+* Business threshold identified: `200`
+* Derived `expenditure_status`:
+
+  * `< 200 → MINIMUM`
+  * `>= 200 → MAXIMUM`
+
+📌 *Profiling Outcome:* Business classification logic applied
+
+---
+
+### 🔹 Step 7: Data Type Profiling
+
+* Detected numeric columns stored as string
+* Casted required fields to **double**
+
+📌 *Profiling Outcome:* Correct typing for aggregation
+
+---
+
+### 🔹 Step 8: Whitespace & Naming Quality Profiling
+
+* Removed leading/trailing spaces
+* Replaced spaces with underscore
+* Fixed double underscores
+
+📌 *Profiling Outcome:* Delta table compatibility ensured
+
+---
+
+## 💥 Question4 - Complete the above practical usecase given  
+
+### Use Case: **Sales View Data Platform**
+
+**Objective:**
+Build a scalable, metadata-driven ingestion and transformation pipeline to process raw ADLS data into analytics-ready Delta tables.
+
+---
+
+### 🔹 Architecture Followed 
+
+```
+Source (ADLS - Landing)
+        |
+        v
+ADF (Latest File Detection)
+        |
+        v
+Bronze Layer (Raw Copy)
+        |
+        v
+Databricks (Profiling + Transformations)
+        |
+        v
+Silver Layer (Cleaned Delta Tables)
+```
+
+---
+
+### 🔹 Architecture Explanation
+
+#### 📂 Source Layer (ADLS – Landing)
+
+* Multiple entities: customer, product, store, sales
+* Files arrive daily with no fixed naming convention
+
+---
+
+#### ✔ Ingestion Layer (ADF)
+
+* Parameterized pipeline
+* Dynamically identifies **latest modified file**
+* Avoids hard-coded dates & file names
+* Copies only valid latest data into Bronze
+
+---
+
+#### ✔ Bronze Layer
+
+* Stores raw ingested files
+* Acts as **audit & recovery layer**
+* No transformations applied
+
+---
+
+#### ✔ Transformation Layer (Databricks)
+
+* Performs complete **data profiling**
+* Applies:
+
+  * Standardization
+  * Cleansing
+  * Derivations
+  * Type casting
+* Uses UDFs for dynamic scalability
+
+---
+
+#### ✔ Silver Layer
+
+* Stores clean, structured Delta tables
+* Upsert logic applied
+* Optimized for analytics & reporting
+
+---
+
+## 5️ Final Answer (2 Lines) ⭐
+
+> Data profiling is the process of analyzing source data to understand its structure, quality, and patterns before transformation.
+> In this project, profiling was performed on column formats, data types, patterns, and business thresholds, enabling a metadata-driven ADF ingestion and Databricks-based Bronze-to-Silver architecture.
+
+---
+
+
+
+
+
+
+
+
+
+
 
